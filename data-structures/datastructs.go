@@ -1,14 +1,8 @@
-package main
+package datastructs
 
 import "fmt"
 
-func main(){
-	array()
-	tuple()
-	hash_map()
-}
-
-func array(){
+func Array(){
 	var input string
 	var a [5]string
 
@@ -24,7 +18,7 @@ func array(){
 	fmt.Println("Array of your words:",a)
 }
 
-func tuple(){
+func Tuple(){
 	type tuple struct {
 		First int
 		Second string
@@ -50,7 +44,7 @@ func tuple(){
 	fmt.Println("Tuple:",t)
 }
 
-func hash_map(){
+func Hash_map(){
 	age_map := make(map [string] int)
 
 	var age int
