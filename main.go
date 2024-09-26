@@ -11,7 +11,7 @@ import (
 
 func main(){
 	var input int
-	fmt.Println("Choose an which solutions to run from the following:\n1) Data structures \n2) File system\n3) Objects")
+	fmt.Println("Choose an which solutions to run from the following:\n1) Data structures \n2) File system\n3) Objects\n4) TEST")
 	fmt.Print("\nEnter Input here: ")
 	_, err := fmt.Scanln(&input)
 	fmt.Println()
@@ -19,7 +19,7 @@ func main(){
 	if err != nil {
 		log.Fatal("Input Error: ",err)
 	}
-	
+
 	switch {
 		case input == 1:
 			fmt.Println("Datastructs module Starting...\n")
@@ -32,6 +32,7 @@ func main(){
 			filesystem.FileSystem()
 			fmt.Println("\nFilesystem module complete...\n")
 		case input ==3:
+			fmt.Println("Objects Moduldes Starting\n")
 			fmt.Println("Bank module Starting...\n")
 			bank()
 			fmt.Println("\nBank module complete...\n")
@@ -41,10 +42,15 @@ func main(){
 			fmt.Println("Shapes module starting...\n")
 			shape();
 			fmt.Println("\nShapes module complete...\n")
-		default: 
+			fmt.Println("Calculator module starting...\n")
+			calculator()
+			fmt.Println("\nCalculator module complete...\n")
+		case input == 4:
+			fmt.Println("No test")
+		default:
 			fmt.Println("Incorrect input\n")
 			main()
-	}	
+	}
 }
 
 func bank(){
@@ -84,8 +90,44 @@ func shape(){
 	}
 
 	fmt.Println("Rectangle Area: ", rect.Area());
-	fmt.Println("Circle Area: ", circ.Area());
-	fmt.Println("Rectangle Perimeter: ", rect.Perimeter());
+	fmt.Println("Circle Area: ", circ.Area()); fmt.Println("Rectangle Perimeter: ", rect.Perimeter());
 	fmt.Println("Circle Perimeter: ", circ.Perimeter());
 }
 
+func calculator(){
+	var input int
+	fmt.Print("Choices:\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n0. Exit\n")
+	fmt.Print("\nEnter Choice: ")
+	fmt.Scanln(&input)
+	switch {
+		case input <= 4:
+			calc := objects.Calculator{}
+			var a,b float64
+
+			fmt.Print("Enter a number: ")
+			fmt.Scanln(&a)
+			fmt.Print("Enter another number: ")
+			fmt.Scanln(&b)
+
+			switch input {
+				case 1:
+					fmt.Println(calc.Add(a, b))
+					fmt.Println(calc.Describe("add"))
+				case 2:
+					fmt.Println(calc.Subtract(a, b))
+					fmt.Println(calc.Describe("subtract"))
+				case 3:
+					fmt.Println(calc.Multiply(a, b))
+					fmt.Println(calc.Describe("multiply"))
+				case 4:
+					fmt.Println(calc.Divide(a, b))
+					fmt.Println(calc.Describe("divide"))
+				case 0:
+					break;
+				default:
+					log.Fatal("Incorrect input: ",input)
+			}
+		default:
+			log.Fatal("Incorrect input: ",input)
+	}
+}
