@@ -1,0 +1,5 @@
+package localstorage
+
+func Store(){
+	
+}
