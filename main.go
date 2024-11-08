@@ -3,53 +3,64 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	datastructs "github.com/MShaw1223/go-challenges.git/data-structures"
+	dbstorage "github.com/MShaw1223/go-challenges.git/db-storage"
 	filesystem "github.com/MShaw1223/go-challenges.git/file-system"
 	objects "github.com/MShaw1223/go-challenges.git/objects"
 )
 
 func main() {
-	var input int
-	fmt.Println("Choose an which solutions to run from the following:\n1) Data structures \n2) File system\n3) Objects\n4) TEST")
-	fmt.Print("\nEnter Input here: ")
-	_, err := fmt.Scanln(&input)
-	fmt.Println()
-
-	if err != nil {
-		log.Fatal("Input Error: ", err)
-	}
+	arg := os.Args[1]
 
 	switch {
-	case input == 1:
+	case arg == "data-structures":
 		fmt.Print("Datastructs module Starting...\n\n")
 		datastructs.Array()
 		datastructs.Tuple()
 		datastructs.Hash_map()
 		fmt.Print("\nDatastructs module complete...\n\n")
-	case input == 2:
+	case arg == "file-system":
 		fmt.Print("Filesystem module Starting...\n\n")
 		filesystem.FileSystem()
 		fmt.Print("\nFilesystem module complete...\n\n")
-	case input == 3:
-		fmt.Print("Objects Moduldes Starting\n\n")
-		fmt.Print("Bank module Starting...\n\n")
-		bank()
-		fmt.Print("\nBank module complete...\n\n")
-		fmt.Print("Vehicle module Starting...\n\n")
-		vehicle()
-		fmt.Print("\nVehicle module complete...\n\n")
-		fmt.Print("Shapes module starting...\n\n")
-		shape()
-		fmt.Print("\nShapes module complete...\n\n")
-		fmt.Print("Calculator module starting...\n\n")
-		calculator()
-		fmt.Print("\nCalculator module complete...\n\n")
-		fmt.Print("Generics Module Starting...\n\n")
-		Gen()
-		fmt.Print("\nGenerics Module Complete...\n\n")
+	case arg == "objects":
+		fmt.Print("Objects Modules Starting\n\n")
+		fmt.Print("Enter a choice from the following: \n1) Bank\n2) Vehicle\n3) Shape\n4) Calculator\n5) Generics\n\n")
+		var choice int
+		fmt.Print("Choice from 1 - 5: ")
+		fmt.Scanln(&choice)
+		switch {
+		case choice == 1:
+			fmt.Print("Bank module Starting...\n\n")
+			bank()
+			fmt.Print("\nBank module complete...\n\n")
+		case choice == 2:
+			fmt.Print("Vehicle module Starting...\n\n")
+			vehicle()
+			fmt.Print("\nVehicle module complete...\n\n")
+		case choice == 3:
+			fmt.Print("Shapes module starting...\n\n")
+			shape()
+			fmt.Print("\nShapes module complete...\n\n")
+		case choice == 4:
+			fmt.Print("Calculator module starting...\n\n")
+			calculator()
+			fmt.Print("\nCalculator module complete...\n\n")
+		case choice == 5:
+			fmt.Print("Generics Module Starting...\n\n")
+			Gen()
+			fmt.Print("\nGenerics Module Complete...\n\n")
+		default:
+			fmt.Println("Wrong")
+		}
 		fmt.Print("\nObjects Modules Complete...\n\n")
-	case input == 4:
+	case arg == "db-storage":
+		fmt.Print("Database Storage Module Starting...\n\n")
+		dbstorage.CreateTable()
+		fmt.Print("Database Storage Module Complete...\n\n")
+	case arg == "test":
 		fmt.Println("No Modules in development at the mo")
 	default:
 		fmt.Print("Incorrect input\n\n")

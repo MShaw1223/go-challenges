@@ -1,5 +1,0 @@
-package localstorage
-
-func Store(){
-	
-}
