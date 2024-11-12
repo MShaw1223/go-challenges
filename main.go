@@ -58,10 +58,11 @@ func main() {
 		fmt.Print("\nObjects Modules Complete...\n\n")
 	case arg == "db-storage":
 		fmt.Print("Database Storage Module Starting...\n\n")
+		if err := dbstorage.InitDB(); err != nil {
+			log.Fatal("Failed to initialize database:", err)
+		}
 		dbstorage.CreateTable()
 		fmt.Print("Database Storage Module Complete...\n\n")
-	case arg == "test":
-		fmt.Println("No Modules in development at the mo")
 	default:
 		fmt.Print("Incorrect input\n\n")
 		main()
